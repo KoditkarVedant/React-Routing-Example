@@ -1,11 +1,18 @@
 import React from 'react'
 
+//used to connect component to redux state
+import { connect } from 'react-redux'
+
+//action creator
+import { fetchPosts } from '../actions/index'
+
 class PostsIndex extends React.Component {
-    //this will called first time the component is going to/about to
+    //this will called first time the component is about to
     // render on UI not every time
     componentWillMount() {
-        console.log('this would be a good time to call fetch posts')
+        this.props.fetchPosts();
     }
+
     render() {
         return (
             <div>List of blog posts</div>
@@ -13,4 +20,5 @@ class PostsIndex extends React.Component {
     }
 }
 
-export default PostsIndex
+
+export default connect(null, { fetchPosts: fetchPosts })(PostsIndex)
