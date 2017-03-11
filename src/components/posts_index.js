@@ -15,7 +15,9 @@ class PostsIndex extends React.Component {
 
     render() {
         return (
-            <div>List of blog posts</div>
+            <div>
+                <div>List of Posts</div>
+            </div>
         )
     }
 }
