@@ -4,6 +4,18 @@ import { createPost } from '../actions/index'
 import { Link } from 'react-router'
 
 class PostsNew extends React.Component {
+    static contextTypes = {
+        router: React.PropTypes.object
+    }
+
+    onSubmit(props) {
+        this.props.createPost(props)
+        .then(() => {
+            // blog post has been created navigate user to index
+            this.context.router.push('/')
+        })
+    }
+
     render() {
         const {
             handleSubmit,
@@ -15,7 +27,7 @@ class PostsNew extends React.Component {
         } = this.props
 
         return (
-            <form onSubmit={handleSubmit(this.props.createPost)}>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <h3>Create A New Post</h3>
                 <div className={`form-group ${title.touched ? 'has-danger': ''}`}>
                     <label>{'Title'}</label>
